@@ -1,0 +1,125 @@
+<html>
+<head>
+<title>BMI Calculator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+
+
+</head>
+<style>
+*{margin:0;
+padding:0;
+font-family:sans-serif,arial;
+font-weight:bold;
+color:white;
+font-size:2.5vw;
+background: url("m4.jpg") no-repeat center center fixed;
+background-size: 100% 100%;
+}
+
+#loading {
+border-radius: 40%;
+position: relative;
+width: 90px;
+height: 90px;
+top:50%;
+left:50%;
+border-right: 0.3rem solid red;
+animation: spin 3s linear infinite;
+z-index: 9999;
+}
+@keyframes spin {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}
+.main{
+top:25%;
+left:12%;
+position:absolute;
+
+}
+.type{
+border:none;
+border-bottom: 5px solid white;
+width:150px;
+}
+.type1{
+border:none;
+border-bottom: 5px solid white;
+width:450px;
+}
+.button {
+  background-color: grey;
+  border: none;
+  color: white;
+  padding: 7px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 2px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button {
+ border: 2px solid #4CAF50;
+}
+
+.button:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+</style>
+<body onload="myfun()">
+<div id="loading"></div>
+<div class="main">
+<form name="bmiForm">
+<h1 class="animate__animated animate__bounce"><u>Body Mass Index Calculator</u></h1>
+<br />
+<div class="main2, animate__animated animate__bounce">
+Your Weight(kg): <input class="type" type="text" name="weight" required><br />
+Your Height(cm): <input class="type" type="text" name="height" required><br />
+<input class="button" type="button" value="Calculate BMI" onClick="calculateBmi()"><br />
+</div>
+<div class="main3, animate__animated animate__bounce">
+Your BMI: <input class="type1" type="text" name="bmi"><br />
+This Means: <input class="type1" type="text" name="meaning"><br />
+<input class="button" type="reset" value="Reset" />
+</div>
+</form>
+</div>
+<script>
+var preloader = document.getElementById('loading');
+function myfun(){
+preloader.style.display = 'none';
+}
+
+function calculateBmi() {
+var weight = document.bmiForm.weight.value
+var height = document.bmiForm.height.value
+if(weight > 0 && height > 0){	
+var finalBmi = weight/(height/100*height/100)
+document.bmiForm.bmi.value = finalBmi
+if(finalBmi < 18.5){
+document.bmiForm.meaning.value = "That you are too thin."
+}
+if(finalBmi > 18.5 && finalBmi < 25){
+document.bmiForm.meaning.value = "That you are healthy."
+}
+if(finalBmi > 25){
+document.bmiForm.meaning.value = "That you have overweight."
+}
+}
+else{
+alert("Please Fill in everything correctly")
+}
+}
+
+</script>
+</body>
+</html>
